@@ -190,4 +190,26 @@ class LiftingBallsView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LiftingBallsView) {
+
+        private val lb : LiftingBalls = LiftingBalls(0)
+        private var animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            lb.draw(canvas, paint)
+            animator.animate {
+                lb.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
