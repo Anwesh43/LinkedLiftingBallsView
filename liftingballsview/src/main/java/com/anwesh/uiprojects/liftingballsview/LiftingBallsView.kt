@@ -213,4 +213,13 @@ class LiftingBallsView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LiftingBallsView {
+            val view : LiftingBallsView = LiftingBallsView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
