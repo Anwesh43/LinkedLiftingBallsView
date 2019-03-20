@@ -48,10 +48,15 @@ fun Canvas.drawLBNode(i : Int, scale : Float, paint : Paint) {
         val scj1 : Float = scj.divideScale(0, 2)
         val scj2 : Float = scj.divideScale(1, 2)
         val r : Float = xGap / rFactor
+        val y : Float = -size * scj1
         save()
-        translate(-size + xGap * i, size - 2 * size * scj1)
+        translate(-size + xGap * j,  0f)
+        save()
+        translate(0f, y)
         drawLine(0f, 0f, xGap, 0f, paint)
-        drawCircle(0f, 0f, r * scj2, paint)
+        drawCircle(xGap / 2, -r, r * scj2, paint)
+        restore()
+        drawLine(xGap / 2, 0f, xGap / 2, y, paint)
         restore()
     }
     restore()
